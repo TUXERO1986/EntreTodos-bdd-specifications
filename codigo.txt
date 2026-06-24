@@ -1,0 +1,182 @@
+Feature: HU09 Asignación de topes máximos de gasto grupal
+
+Scenario: Creación de un límite presupuestal
+Given un creador de grupo planifica las finanzas de un evento colaborativo
+When define un monto tope en la sección de configuración
+Then el aplicativo guarda el límite y comienza a monitorear la sumatoria de gastos
+
+Scenario: Emisión de alerta por proximidad al límite presupuestal
+Given un grupo posee un presupuesto máximo configurado previamente
+When un integrante registra un gasto que acerca el acumulado al límite establecido
+Then el aplicativo envía una notificación de advertencia a todos los miembros del grupo
+
+---
+
+Feature: HU11 Corrección de registros
+
+Scenario: Edición exitosa de un monto erróneo
+Given que un usuario guardó previamente un gasto con un monto equivocado en el grupo
+When el usuario modifica el valor numérico en la pantalla de edición y guarda los cambios
+Then el sistema actualiza el registro y recalcula los balances de todos los miembros de inmediato
+
+Scenario: Intento de edición dejando campos obligatorios vacíos
+Given que un usuario se encuentra modificando un registro de consumo existente
+When borra la descripción del gasto y presiona el botón de guardar
+Then la plataforma impide la actualización y muestra un mensaje indicando que el campo es obligatorio
+
+---
+
+Feature: HU12 Visualización cronológica de movimientos
+
+Scenario: Visualización del historial ordenado por fecha
+Given que un participante accede al módulo de historial de un grupo con transacciones activas
+When la pantalla termina de cargar
+Then el sistema despliega todos los consumos organizados cronológicamente desde el más reciente hasta el más antiguo
+
+Scenario: Acceso al historial en un grupo sin transacciones
+Given que un participante abre la pestaña de movimientos en un grupo recién creado
+When el sistema verifica que no existen registros de cobros ni pagos
+Then el sistema muestra una interfaz limpia con un mensaje informativo indicando que aún no hay movimientos
+
+---
+
+Feature: HU14 Búsqueda con filtrado avanzado de operaciones
+
+Scenario: Filtrado de transacciones por una categoría específica
+Given que un usuario busca un consumo específico dentro del buscador del grupo
+When selecciona el filtro por el rubro "Transporte" y aplica los cambios
+Then el sistema oculta los demás registros y despliega únicamente los gastos asociados a dicha categoría
+
+Scenario: Búsqueda cruzada combinando persona y rango de fechas
+Given que un usuario necesita auditar cuentas complejas de una salida o viaje
+When ingresa el nombre de un miembro específico y acota el calendario a los últimos tres días
+Then el sistema filtra la lista mostrando solo las operaciones que cumplen con ambos criterios simultáneamente
+
+---
+
+Feature: HU15 Alertas inteligentes por consumos atípicos
+
+Scenario: Detección de un gasto inusualmente alto
+Given un integrante registra un nuevo gasto grupal
+When el sistema detecta que el monto supera significativamente el promedio histórico del grupo
+Then genera una alerta visual indicando un consumo atípico
+
+Scenario: Registro de un gasto dentro del comportamiento habitual
+Given los integrantes registran gastos dentro de los rangos normales del grupo
+When el sistema procesa la operación
+Then almacena el gasto sin generar alertas de consumo atípico
+
+---
+
+Feature: HU17 Generación de reportes de saldos exportables
+
+Scenario: Exportar reporte financiero
+  Given el participante visualiza el resumen de saldos de un grupo
+  When selecciona la opción de exportar reporte
+  Then el sistema genera un archivo PDF con la información financiera actual
+
+Scenario: Descargar reporte generado
+  Given el sistema genera correctamente el reporte
+  When finaliza el proceso de exportación
+  Then el archivo PDF queda disponible para descarga en el dispositivo
+
+Scenario: Visualizar contenido del reporte
+  Given el reporte fue generado exitosamente
+  When el usuario accede al archivo
+  Then visualiza el detalle de gastos, deudas, pagos y balances del grupo
+
+Scenario: Compartir reporte exportado
+  Given el archivo PDF se encuentra almacenado localmente
+  When el usuario selecciona la opción compartir
+  Then el sistema muestra los canales de compartición disponibles en el dispositivo
+
+Scenario: Error al generar el reporte
+  Given ocurre un error durante la generación del documento
+  When el usuario solicita exportar el reporte
+  Then el sistema muestra una notificación indicando que no fue posible generar el archivo
+
+---
+
+Feature: HU18 Liquidación Definitiva
+
+Scenario: Confirmar cierre definitivo del grupo
+  Given el creador del grupo posee permisos de administración
+  When selecciona la opción de cierre definitivo
+  Then el sistema solicita confirmación antes de ejecutar la acción
+
+Scenario: Cambiar estado del grupo a liquidación final
+  Given el creador confirma el cierre definitivo
+  When el sistema procesa la solicitud
+  Then el grupo cambia al estado de liquidación final
+
+Scenario: Bloquear registro de nuevos gastos
+  Given el grupo se encuentra en estado de liquidación final
+  When cualquier integrante intenta registrar un nuevo gasto
+  Then el sistema bloquea la operación
+
+Scenario: Impedir modificaciones en un grupo cerrado
+  Given el grupo se encuentra cerrado definitivamente
+  When un integrante intenta modificar o eliminar registros existentes
+  Then el sistema rechaza la acción e informa que el grupo está clausurado
+
+Scenario: Consultar balance final del grupo
+  Given el proceso de liquidación final concluyó correctamente
+  When los integrantes consultan el balance del grupo
+  Then visualizan las deudas finales como montos fijos e inmodificables
+
+---
+
+Feature: HU19 Notificaciones en tiempo real sobre actividad
+
+Scenario: Notificar registro de nuevo gasto
+  Given un integrante registra un nuevo gasto en el grupo
+  When el sistema actualiza los balances correspondientes
+  Then envía una notificación a los demás integrantes involucrados
+
+Scenario: Recibir alerta push en tiempo real
+  Given el usuario tiene conexión a internet y notificaciones habilitadas
+  When se genera una nueva actividad relevante
+  Then recibe una alerta push en tiempo real
+
+Scenario: Sincronizar notificaciones pendientes
+  Given un usuario se encuentra desconectado al momento de generarse una actividad
+  When recupera la conexión a internet
+  Then el sistema sincroniza y muestra las notificaciones pendientes
+
+Scenario: Consultar centro de notificaciones
+  Given el usuario accede al centro de notificaciones
+  When existen alertas sin revisar
+  Then el sistema muestra el detalle de las actividades registradas
+
+Scenario: Acceder al detalle desde una notificación
+  Given una notificación corresponde a un nuevo gasto registrado
+  When el usuario abre la alerta
+  Then el sistema redirige al detalle del gasto correspondiente
+
+---
+
+Feature: HUNF-02 Facilidad de uso para usuarios sin conocimientos técnicos
+
+Scenario: Registro exitoso de un gasto por un usuario nuevo
+    Given que una persona utiliza la aplicación por primera vez
+    When intenta registrar un gasto siguiendo las opciones visibles de la interfaz
+    Then el usuario completa la operación sin requerir capacitación previa ni asistencia técnica
+
+Scenario: Navegación intuitiva entre funcionalidades principales
+    Given que un usuario sin experiencia técnica accede a la aplicación
+    When explora las opciones para consultar deudas, pagos y gastos
+    Then identifica y utiliza las funcionalidades principales de forma sencilla y comprensible
+
+---
+
+Feature: HUNF-03 Compatibilidad con dispositivos Android
+
+Scenario: Instalación de la aplicación en Android
+    Given que un usuario posee un dispositivo con sistema operativo Android compatible
+    When descarga e instala la aplicación en su dispositivo móvil
+    Then la aplicación se ejecuta correctamente sin presentar errores de compatibilidad
+
+Scenario: Uso de funcionalidades en Android
+    Given que un usuario accede a la aplicación desde un dispositivo Android
+    When registra gastos, consulta balances y recibe notificaciones
+    Then todas las funcionalidades operan correctamente manteniendo el comportamiento esperado
