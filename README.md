@@ -41,7 +41,7 @@ Cada escenario sigue la estructura estándar **Given-When-Then** (Dado-Cuando-En
 
 ---
 
-## 👤 Autor
+## 👤 Autores
 **Ryan Nicolás Nima Muro**
 *Estudiante de Ingeniería de Software | Universidad Peruana de Ciencias Aplicadas (UPC)*
 

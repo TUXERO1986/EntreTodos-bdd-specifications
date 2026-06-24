@@ -1,3 +1,4 @@
+#lenguaje: es
 Feature: Registro rápido de consumos
 
 Como integrante de un grupo de gastos compartidos

@@ -1,3 +1,4 @@
+# language: es
 Feature: Tiempo de respuesta del sistema
 
 Como usuario de EntreTodos
