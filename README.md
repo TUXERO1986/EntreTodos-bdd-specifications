@@ -43,7 +43,11 @@ Cada escenario sigue la estructura estándar **Given-When-Then** (Dado-Cuando-En
 
 ## 👤 Autores
 **Ryan Nicolás Nima Muro**
-*Estudiante de Ingeniería de Software | Universidad Peruana de Ciencias Aplicadas (UPC)*
+*Ccasani Marreros, Walter Alessio (u20251e693)*
+*Peralta Campos, Nayeli Ayelen (u202510096)* 
+*Porras Angeles, Jeremi Eli (u20251f491)*
+*Guerra Castro, Jorge Santiago (u202510637)* 
+*Nima Muro, Ryan Nicolas (U20251147)*
 
 ---
 *Documentación generada con enfoque en calidad de software.*
