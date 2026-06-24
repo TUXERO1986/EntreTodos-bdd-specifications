@@ -35,19 +35,18 @@ Para obtener la mejor experiencia de lectura en **VS Code**, te recomiendo insta
 ## 🛠️ Convenciones de Escritura
 Cada escenario sigue la estructura estándar **Given-When-Then** (Dado-Cuando-Entonces):
 
-*   **Dado (Given):** El contexto o estado inicial.
-*   **Cuando (When):** La acción específica realizada por el usuario.
-*   **Entonces (Then):** El resultado esperado o validación.
+*   **Given (Dado):** El contexto o estado inicial.
+*   **When (Cuando):** La acción específica realizada por el usuario.
+*   **Then (Entonces):** El resultado esperado o validación.
 
 ---
 
 ## 👤 Autores
-**Ryan Nicolás Nima Muro**
-*Ccasani Marreros, Walter Alessio (u20251e693)*
-*Peralta Campos, Nayeli Ayelen (u202510096)* 
-*Porras Angeles, Jeremi Eli (u20251f491)*
-*Guerra Castro, Jorge Santiago (u202510637)* 
-*Nima Muro, Ryan Nicolas (U20251147)*
+*   Ccasani Marreros, Walter Alessio (u20251e693)
+*   Guerra Castro, Jorge Santiago (u202510637)
+*   Nima Muro, Ryan Nicolás (U20251147)
+*   Peralta Campos, Nayeli Ayelen (u202510096)
+*   Porras Angeles, Jeremi Eli (u20251f491)
 
 ---
 *Documentación generada con enfoque en calidad de software.*
